@@ -1,12 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<GridView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/masterListGridView"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:adjustViewBounds="true"
-    android:gravity="center"
-    android:horizontalSpacing="8dp"
-    android:numColumns="auto_fit"
-    android:padding="16dp"
-    android:stretchMode="columnWidth"
-    android:verticalSpacing="16dp" />
+    android:orientation="vertical">
+
+    <GridView
+        android:id="@+id/masterListGridView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="7"
+        android:adjustViewBounds="true"
+        android:gravity="center"
+        android:horizontalSpacing="8dp"
+        android:numColumns="auto_fit"
+        android:padding="16dp"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="16dp" />
+
+    <Button
+        android:id="@+id/nextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="16dp"
+        android:layout_weight="1"
+        android:background="@color/colorAccent"
+        android:text="@string/next_button"
+        android:textColor="@android:color/white" />
+
+</LinearLayout>
+

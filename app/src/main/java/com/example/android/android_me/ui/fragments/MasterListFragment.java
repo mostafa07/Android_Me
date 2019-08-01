@@ -1,9 +1,11 @@
 package com.example.android.android_me.ui.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
 
 import androidx.annotation.NonNull;
@@ -16,6 +18,12 @@ import com.example.android.android_me.ui.MasterListAdapter;
 
 public class MasterListFragment extends Fragment {
 
+    OnImageClickListener mCallback;
+
+    public interface OnImageClickListener {
+        void onImageClick(int position);
+    }
+
     public MasterListFragment() {
     }
 
@@ -26,6 +34,24 @@ public class MasterListFragment extends Fragment {
         GridView gridView = rootView.findViewById(R.id.masterListGridView);
         MasterListAdapter masterListAdapter = new MasterListAdapter(getActivity(), AndroidImageAssets.getAll());
         gridView.setAdapter(masterListAdapter);
+
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                mCallback.onImageClick(i);
+            }
+        });
         return rootView;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        try {
+            mCallback = (OnImageClickListener) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString() + "must implement OnImageClickListener");
+        }
     }
 }
